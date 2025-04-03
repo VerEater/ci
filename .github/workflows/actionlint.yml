@@ -19,4 +19,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Run Actionlint
-        run: docker container run --rm -v $(pwd):$(pwd) -w $(pwd) rhysd/actionlint:latest
+        run: docker container run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" rhysd/actionlint:latest
