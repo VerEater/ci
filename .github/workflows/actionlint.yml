@@ -1,5 +1,8 @@
 name: ActionLint
 run-name: ${{github.workflow}}-${{github.ref}}
+defaults:
+  run:
+    shell: bash
 on:
   push:
     paths:

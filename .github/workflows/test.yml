@@ -1,4 +1,7 @@
 name: testmkdie
+defaults:
+  run:
+    shell: bash
 on:
   push:
     paths: ["go/excellent/**/*.go", "go/excellent/*.go"]
