@@ -1,0 +1,6 @@
+name: invalid
+on:
+  push:
+    paths: ["go/excellent/**/*.go", "go/excellent/*.go"]
+  pull_request:
+    types: []

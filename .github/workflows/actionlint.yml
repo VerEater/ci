@@ -1,0 +1,19 @@
+name: ActionLint
+run-name: ${{github.workflow}}-${{github.ref}}
+on:
+  push:
+    paths:
+      - ".github/workflows/*.yml"
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+jobs:
+  linter:
+    name: Check
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run Actionlint
+        run: docker container run --rm -v $(pwd):$(pwd) -w $(pwd) rhysd/actionlint:latest
