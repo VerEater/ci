@@ -1,0 +1,28 @@
+name: hello-world
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: your name
+        required: true
+        default: world
+env:
+  name: ${{ github.event.inputs.name }}
+defaults:
+  run:
+    shell: bash
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - id: hello
+        name: action
+        uses: ./.github/actions/hello-world.yml
+        with:
+          name: ${{ github.event.inputs.name }}
+      - name: date
+        env:
+          hello-date: ${{ steps.hello.outputs.date }}
+        run: echo "$hello-date"

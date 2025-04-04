@@ -1,0 +1,27 @@
+name: hello-world
+description: Hello world action
+inputs:
+  name:
+    description: your name
+    required: true
+    default: world
+  outputs:
+    date:
+      description: the date
+      value: ${{ steps.date.outputs.date }}
+runs:
+  using: "composite"
+  steps:
+    - name: hello
+      id: hello
+      shell: bash
+      run: |
+        echo "hello ${{ inputs.name }}"
+        echo "date=$(date)" >> "${GITHUB_OUTPUT}"
+    - name: date
+      id: date
+      shell: bash
+      env:
+        hello-date: ${{ steps.hello.outputs.date }}
+      run: |
+        echo "date=$(date)" >> "${hello-date}"
