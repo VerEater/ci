@@ -1,0 +1,23 @@
+name: needs
+on: push
+defaults:
+  run:
+    shell: bash
+jobs:
+  before:
+    runs-on: ubuntu-latest
+    steps:
+      - name: before
+        id: before
+        run: echo "result=before" >> "${GITHUB_OUTPUT}"
+    outputs:
+      result: ${{ steps.before.outputs.result }}
+  after:
+    runs-on: ubuntu-latest
+    needs: before
+    steps:
+      - name: after
+        id: after
+        env:
+          result: ${{ needs.before.outputs.result }}
+        run: echo "${result}"
