@@ -15,6 +15,7 @@ jobs:
   print:
     name: print
     runs-on: ubuntu-latest
+    environment: ${{ inputs.env }}
     steps:
       - name: print
         env:
