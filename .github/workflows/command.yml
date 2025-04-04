@@ -8,13 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: notice
-        run: echo "::notice this is notice::"
+        run: echo "::notice::this is notice"
       - name: warning
-        run: echo "::warning this is warning::"
+        run: echo "::warning::this is warning"
       - name: error
-        run: echo "::error this is error::"
+        run: echo "::error::this is error"
       - name: sample
-        run: echo ::notice file={name},line={line},endLine={endLine},title={title}::{message}
+        run: echo "::notice::file={name},line={line},endLine={endLine},title={title}{message}"
       - name: trace
         run: |
           set -x
