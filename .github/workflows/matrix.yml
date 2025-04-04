@@ -1,0 +1,29 @@
+name: matrix
+defaults:
+  run:
+    shell: bash
+on: push
+jobs:
+  matrix:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [16, 18]
+    steps:
+      - name: matrix
+        run: echo "hello ${{ matrix.os }} ${{ matrix.node-version }}"
+  includes:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            node-version: 16
+          - os: ubuntu-latest
+            node-version: 18
+    steps:
+      - name: includes
+        run: echo "hello ${{ matrix.os }} ${{ matrix.node-version }}"
