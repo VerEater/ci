@@ -1,0 +1,23 @@
+name: cache
+on:
+  push:
+defaults:
+  run:
+    shell: bash
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          key: test-${{ runner.os }}-${{ github.sha }}
+          path: ${{ github.workspace }}/test
+          restore-keys: |
+            test-${{ runner.os }}-
+            test-
+      - run: |
+          if [[ -f "${{ github.workspace }}/test" ]]; then exit 0 fi
+          dd if=/det/urandom of ="${{ github.workspace }}/test" bs=1M count=10
+          sleep 30
+      - run: ls -lh "${{ github.workspace }}/test"
