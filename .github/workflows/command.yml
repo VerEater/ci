@@ -30,6 +30,6 @@ jobs:
       - name: showmask
         run: echo "hello"
       - name: summary1
-        run: echo "hello" >> "${GITHUB_STEP_SUMMARY}"
+        run: echo "hello" >> $GITHUB_STEP_SUMMARY
       - name: summary2
-        run: echo "hello" >> "${GITHUB_STEP_SUMMARY}"
+        run: echo "hello" >> $GITHUB_STEP_SUMMARY
