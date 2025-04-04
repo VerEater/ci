@@ -17,5 +17,5 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: hello
-          path: hello.txt
-      - run: cat hello.txt
+          path: download
+      - run: cat download/hello.txt
