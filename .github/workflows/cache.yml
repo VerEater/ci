@@ -18,6 +18,6 @@ jobs:
             test-
       - run: |
           if [[ -f "${{ github.workspace }}/test" ]]; then exit 0; fi
-          dd if=/det/urandom of="${{ github.workspace }}/test" bs=1M count=10
+          dd if=/dev/urandom of="${{ github.workspace }}/test" bs=1M count=10
           sleep 30
       - run: ls -lh "${{ github.workspace }}/test"
