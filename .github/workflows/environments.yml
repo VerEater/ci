@@ -1,0 +1,22 @@
+name: environments
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        type: environment
+        default: test
+        required: false
+        description: environment Name
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  print:
+    name: print
+    runs-on: ubuntu-latest
+    steps:
+      - name: print
+        env:
+          env: ${{ inputs.env }}
+        run: echo "env is ${{vars.variable}}"
