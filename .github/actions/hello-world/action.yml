@@ -18,3 +18,4 @@ runs:
         echo "hello ${{ inputs.name }}"
         echo "date=$(date)" >> "${GITHUB_OUTPUT}"
     - run: echo ${{ toJson(github)}}
+      shell: bash
