@@ -12,16 +12,9 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: hello
-      id: hello
+    - id: hello
       shell: bash
       run: |
         echo "hello ${{ inputs.name }}"
         echo "date=$(date)" >> "${GITHUB_OUTPUT}"
-    - name: date
-      id: date
-      shell: bash
-      env:
-        hello-date: ${{ steps.hello.outputs.date }}
-      run: |
-        echo "date=$(date)" >> "${hello-date}"
+    - run: echo ${{ toJson(github)}}
