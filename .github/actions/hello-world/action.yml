@@ -8,7 +8,7 @@ inputs:
 outputs:
   date:
     description: the date
-    value: ${{ steps.date.outputs.date }}
+    value: ${{ steps.hello.outputs.date }}
 runs:
   using: "composite"
   steps:
