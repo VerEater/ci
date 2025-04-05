@@ -22,6 +22,7 @@ jobs:
         uses: ./.github/actions/hello-world/
         with:
           name: ${{ github.event.inputs.name }}
+      - run: echo "end"
       - name: date
         env:
           hello-date: ${{ steps.hello.outputs.date }}
