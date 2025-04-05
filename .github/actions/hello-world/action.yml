@@ -1,21 +1,30 @@
-name: hello-world
-description: Hello world action
+name: "Hello World"
+description: "Greet someone"
 inputs:
-  name:
-    description: your name
+  who-to-greet: # id of input
+    description: "Who to greet"
     required: true
-    default: world
+    default: "World"
 outputs:
-  date:
-    description: the date
-    value: ${{ steps.hello.outputs.date }}
+  random-number:
+    description: "Random number"
+    value: ${{ steps.random-number-generator.outputs.random-number }}
 runs:
   using: "composite"
   steps:
-    - id: hello
+    - name: Set Greeting
+      run: echo "Hello $INPUT_WHO_TO_GREET."
       shell: bash
-      run: |
-        echo "hello ${{ inputs.name }}"
-        echo "date=$(date)" >> "${GITHUB_OUTPUT}"
-    - run: echo ${{ toJson(github)}}
+      env:
+        INPUT_WHO_TO_GREET: ${{ inputs.who-to-greet }}
+
+    - name: Random Number Generator
+      id: random-number-generator
+      run: echo "random-number=$(echo $RANDOM)" >> $GITHUB_OUTPUT
       shell: bash
+
+    - name: Set GitHub Path
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+      shell: bash
+      env:
+        GITHUB_ACTION_PATH: ${{ github.action_path }}
