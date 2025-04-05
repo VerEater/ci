@@ -5,10 +5,10 @@ inputs:
     description: your name
     required: true
     default: world
-  outputs:
-    date:
-      description: the date
-      value: ${{ steps.date.outputs.date }}
+outputs:
+  date:
+    description: the date
+    value: ${{ steps.date.outputs.date }}
 runs:
   using: "composite"
   steps:
