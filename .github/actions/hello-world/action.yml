@@ -17,5 +17,5 @@ runs:
       run: |
         echo "hello ${{ inputs.name }}"
         echo "sss=$(date)" >> "${GITHUB_OUTPUT}"
-    - run: echo ${{ toJson(github)}}
+    - run: echo "${{ toJson(github) }}"
       shell: bash
