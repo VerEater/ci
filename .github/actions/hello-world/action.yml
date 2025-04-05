@@ -8,7 +8,7 @@ inputs:
 outputs:
   date:
     description: "the date"
-    value: ${{ steps.hello.outputs.date }}
+    value: ${{ steps.hello.outputs.sss }}
 runs:
   using: "composite"
   steps:
@@ -16,6 +16,9 @@ runs:
       shell: bash
       run: |
         echo "hello ${{ inputs.name }}"
-        echo "date=$(date)" >> "${GITHUB_OUTPUT}"
+        echo "sss=$(date)" >> "${GITHUB_OUTPUT}"
     - run: echo ${{ toJson(github)}}
+      shell: bash
+    - name: Run goodbye.sh
+      run: goodbye.sh
       shell: bash

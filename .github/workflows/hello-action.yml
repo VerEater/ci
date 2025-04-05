@@ -25,5 +25,5 @@ jobs:
       - run: echo "end"
       - name: date
         env:
-          hello-date: ${{ steps.hello.outputs.date }}
+          hello-date: ${{ steps.hello.outputs.sss }}
         run: echo "$hello-date"
